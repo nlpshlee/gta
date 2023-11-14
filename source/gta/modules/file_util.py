@@ -43,7 +43,7 @@ def get_file_paths(in_path: str, inner_flag: bool) :
 def make_parent(file_path: str) :
     os.makedirs(os.path.dirname(file_path), exist_ok=True)
 
-def open_file(file_path: str, encoding: str=ENCODING, mode: str="r") :
+def open_file(file_path: str, encoding=ENCODING, mode: str='r') :
     if mode.find('w') != -1 or mode.find('a') != -1 :
         make_parent(file_path)
 
@@ -52,7 +52,7 @@ def open_file(file_path: str, encoding: str=ENCODING, mode: str="r") :
     else :
         return open(file_path, mode, encoding=encoding)
 
-def open_file_read(file_path: str, encoding: str=ENCODING, is_bin: bool=False) :
+def open_file_read(file_path: str, encoding=ENCODING, is_bin: bool=False) :
     if not is_bin :
         return open_file(file_path, encoding, 'r')
     else :
@@ -94,7 +94,7 @@ def load_set(in_file_path: str, encoding: str, delim: str, txt_option: int, in_s
 
 ###########################################################################################
 
-def load_dict(in_file_path: str, encoding: str, delim: str, txt_option: int, in_dict: dict, is_freq: bool, is_bin: bool) :
+def load_dict(in_file_path: str, encoding: str, delim: str, txt_option: int, in_dict: dict, is_value_int: bool, is_bin: bool) :
     if exists(in_file_path) :
         in_file = open_file_read(in_file_path, encoding, is_bin)
 
@@ -118,7 +118,7 @@ def load_dict(in_file_path: str, encoding: str, delim: str, txt_option: int, in_
             #if terms[0] in in_dict :
                 #print("중복 제거 :", terms[0], in_dict[terms[0]])
         
-            if is_freq :
+            if is_value_int :
                 in_dict[terms[0]] = int(terms[1])
             else :
                 in_dict[terms[0]] = terms[1]
@@ -126,7 +126,7 @@ def load_dict(in_file_path: str, encoding: str, delim: str, txt_option: int, in_
 
 ###########################################################################################
 
-def write_set(out_file_path: str, encoding: str, out_set: set, is_reverse: bool) :
+def write_set(out_set: set, out_file_path: str, encoding=ENCODING, is_reverse=False) :
     file = open_file(out_file_path, encoding, 'w')
 
     out_list = list(out_set)
@@ -137,7 +137,7 @@ def write_set(out_file_path: str, encoding: str, out_set: set, is_reverse: bool)
     
     file.close()
 
-def write_dict(out_file_path: str, encoding: str, out_dict: dict, delim: str) :
+def write_dict(out_dict: dict, out_file_path: str, encoding=ENCODING, delim=DELIM_KEY) :
     file = open_file(out_file_path, encoding, 'w')
 
     items = out_dict.items()
@@ -159,7 +159,7 @@ def exists(file_path: str) :
 
 ###########################################################################################
 
-def convert_txt_to_bin(txt_file_path: str, bin_file_path: str, encoding: str) :
+def convert_txt_to_bin(txt_file_path: str, bin_file_path: str, encoding=ENCODING) :
     if exists(txt_file_path) :
         try :
             txt_file = open_file(txt_file_path, encoding, 'r')
@@ -182,7 +182,7 @@ def convert_txt_to_bin(txt_file_path: str, bin_file_path: str, encoding: str) :
     
     return False
 
-def convert_bin_to_txt(bin_file_path: str, txt_file_path: str, encoding: str) :
+def convert_bin_to_txt(bin_file_path: str, txt_file_path: str, encoding=ENCODING) :
     if exists(bin_file_path) :
         try :
             bin_file = open_file(bin_file_path, None, 'rb')
@@ -204,7 +204,7 @@ def convert_bin_to_txt(bin_file_path: str, txt_file_path: str, encoding: str) :
 
 ###########################################################################################
 
-def readline(in_file, is_bin: bool=False) :
+def readline(in_file, is_bin=False) :
     if not is_bin :
         return in_file.readline()
     else :
@@ -215,7 +215,7 @@ def readline(in_file, is_bin: bool=False) :
         
         return ''.join(chr(int(c, 2)) for c in bin_list)
 
-def get_cnt_line(in_file_path: str, encoding: str, is_bin: bool=False) :
+def get_cnt_line(in_file_path: str, encoding=ENCODING, is_bin=False) :
     try :
         if exists(in_file_path) :
             in_file = open_file_read(in_file_path, encoding, is_bin)
