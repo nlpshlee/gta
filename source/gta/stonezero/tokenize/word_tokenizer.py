@@ -1,5 +1,6 @@
 from _init import *
 
+from gta.modules.common_const import *
 from gta.modules import file_util
 
 
@@ -31,15 +32,15 @@ class WordTokenizer :
                     i += 1
 
         
-        file_util.write_dict(out_file_path, self.vocab, encoding, delim)
+        file_util.write_dict(self.vocab, out_file_path, encoding, delim)
     
     
-    def tokenize(self, txt:str, max_length = 30):
+    def tokenize(self, txt:str, out_file_path, max_length = 30):
         txt_ = "<SOS> " + txt + " <EOS>"
         tokens = txt_.split(" ")
         vocab = {}
 
-        file_util.load_dict("./vocab_tokenized.dict", 'UTF-8', '\t', 1, vocab, True, False)
+        file_util.load_dict(vocab, True, out_file_path, txt_option=TXT_OPTION.UPPER)
         result = []
     
         for i in range(max_length):
@@ -59,11 +60,13 @@ class WordTokenizer :
 if __name__ == "__main__" :
     res_dir = '../../../../resources/'
     in_file_path = f'{res_dir}/sample/sejong/output/sentence_freq.dict'
-    out_file_path = "./vocab_tokenized.dict"
+    out_file_path = f"{res_dir}/stonezero/tokenize/word_tokenize.vocab"
 
     tokenizer = WordTokenizer()
     tokenizer.train(in_file_path, 'UTF-8', '\t', out_file_path)
-    result = tokenizer.tokenize("지금 우리가 카페에서 공부하고 있는 이유는 앞서 공부를 정말 많이 한 선배들을 어떻게든 따라잡고 나도 한가닥 좀 해보려고 발버둥 치는 것이다.")
+
+    text = '지금 우리가 카페에서 공부하고 있는 이유는 앞서 공부를 정말 많이 한 선배들을 어떻게든 따라잡고 나도 한가닥 좀 해보려고 발버둥 치는 것이다.'
+    result = tokenizer.tokenize(text, out_file_path)
 
     print(result)
 
