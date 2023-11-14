@@ -1,20 +1,59 @@
 from _init import *
 
-from gta.modules import file_util
+from gta.modules import file_util, string_util
+
+from gta.falcon.tokenize.vocab import Vocab
 
 class WordTokenizer :
     def __init__(self) :
-        pass
+        self._vocab = Vocab()
+
+    def _init_vocab(self) :
+        self._vocab.init_vocab()
     
-    def train(self, in_path, encoding) :
-        in_file_paths = file_util.get_file_paths(in_path, True)
-        for in_file_path in in_file_paths :
-            print(in_file_path)
+    def get_vocab(self) -> Vocab :
+        return self._vocab
+
+    def train(self, in_file_path, encoding, delim, do_init_vocab=False) :
+        if do_init_vocab :
+            self._init_vocab()
+        
+        in_file = file_util.open_file(in_file_path, encoding, 'r')
+        while 1 :
+            line = in_file.readline()
+            if not line :
+                break
+            
+            line = file_util.preprocess(line)
+            temp = string_util.trim(line.split(delim), True)
+            line = temp[0]
+            
+            words = line.split()
+            for word in words :
+                self._vocab.add(word)
+
+    def write_vocab(self, vocab_file_path, encoding, delim) :
+        self._vocab.write_vocab(vocab_file_path, encoding, delim)
+    
+    def load_vocab(self, vocab_file_path, encoding, delim) :
+        self._vocab.load_vocab(vocab_file_path, encoding, delim)
+    
+    def tokenize(self, line) :
+        words = line.split()
+        return [self._vocab.get_idx(word) for word in words]
 
 
 if __name__ == "__main__" :
     res_dir = '../../../../resources'
-    in_path = f'{res_dir}/sample/sejong/'
+    
+    in_file_path = f'{res_dir}/sample/sejong/output/sentence_freq.dict'
+    vocab_file_path = f'{res_dir}/falcon/tokenize/word_tokenize.vocab'
+    
+    encoding, delim = 'UTF-8', '\t'
     
     tokenizer = WordTokenizer()
-    tokenizer.train(in_path, 'UTF-8')
+    # tokenizer.train(in_file_path, encoding, delim)
+    # tokenizer.write_vocab(vocab_file_path, encoding, delim)
+    
+    tokenizer.load_vocab(vocab_file_path, encoding, delim)
+    tokenizer.write_vocab(vocab_file_path, encoding, delim)

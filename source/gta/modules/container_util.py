@@ -29,7 +29,7 @@ def add_str_int(in_dict: dict, key: str, value: int, txt_option: int) :
         - is_reverse = False : 오름 차순
         - is_reverse = True : 내림 차순
 '''
-def sorted_dict_key(in_dict: dict, is_reverse: bool) :
+def sorted_dict_key(in_dict: dict, is_reverse=False) :
     return dict(sorted(in_dict.items(), key=lambda item:item[0], reverse=is_reverse))
 
 '''
@@ -37,7 +37,7 @@ def sorted_dict_key(in_dict: dict, is_reverse: bool) :
         - is_reverse = False : 오름 차순
         - is_reverse = True : 내림 차순
 '''
-def sorted_dict_value(in_dict: dict, is_reverse: bool) :
+def sorted_dict_value(in_dict: dict, is_reverse=False) :
     return dict(sorted(in_dict.items(), key=lambda item:item[1], reverse=is_reverse))
 
 '''
