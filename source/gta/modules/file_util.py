@@ -137,7 +137,11 @@ def write_set(out_set: set, out_file_path: str, encoding=ENCODING, is_reverse=Fa
     
     file.close()
 
+<<<<<<< HEAD
+def write_dict(out_file_path: str, out_dict: dict, encoding=ENCODING, delim=DELIM_KEY) :
+=======
 def write_dict(out_dict: dict, out_file_path: str, encoding=ENCODING, delim=DELIM_KEY) :
+>>>>>>> 3f182e701103daa37bbdc2f462a406e323160b9a
     file = open_file(out_file_path, encoding, 'w')
 
     items = out_dict.items()
