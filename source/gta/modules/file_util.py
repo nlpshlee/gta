@@ -65,7 +65,7 @@ def preprocess(input: str) :
 
 ###########################################################################################
 
-def load_set(in_file_path: str, encoding: str, delim: str, txt_option: int, in_set: set, is_bin: bool) :
+def load_set(in_set: set, in_file_path: str, encoding=ENCODING, delim=DELIM_KEY, txt_option=TXT_OPTION.OFF, is_bin=False) :
     if exists(in_file_path) :
         in_file = open_file_read(in_file_path, encoding, is_bin)
 
@@ -94,7 +94,7 @@ def load_set(in_file_path: str, encoding: str, delim: str, txt_option: int, in_s
 
 ###########################################################################################
 
-def load_dict(in_file_path: str, encoding: str, delim: str, txt_option: int, in_dict: dict, is_value_int: bool, is_bin: bool) :
+def load_dict(in_dict: dict, is_value_int: bool, in_file_path: str, encoding=ENCODING, delim=DELIM_KEY, txt_option=TXT_OPTION.OFF, is_bin=False) :
     if exists(in_file_path) :
         in_file = open_file_read(in_file_path, encoding, is_bin)
 
