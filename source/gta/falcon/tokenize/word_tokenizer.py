@@ -41,19 +41,3 @@ class WordTokenizer :
     def tokenize(self, line) :
         words = line.split()
         return [self._vocab.get_idx(word) for word in words]
-
-
-if __name__ == "__main__" :
-    res_dir = '../../../../resources'
-    
-    in_file_path = f'{res_dir}/sample/sejong/output/sentence_freq.dict'
-    vocab_file_path = f'{res_dir}/falcon/tokenize/word_tokenize.vocab'
-    
-    encoding, delim = 'UTF-8', '\t'
-    
-    tokenizer = WordTokenizer()
-    # tokenizer.train(in_file_path, encoding, delim)
-    # tokenizer.write_vocab(vocab_file_path, encoding, delim)
-    
-    tokenizer.load_vocab(vocab_file_path, encoding, delim)
-    tokenizer.write_vocab(vocab_file_path, encoding, delim)
