@@ -7,11 +7,10 @@ from gta.modules import file_util
 class WordTokenizer :
     def __init__(self) :
         self.vocab = {}
+        self.id_to_token = {}
     
     def train(self, in_file_path, encoding, delim, out_file_path) :
         in_file = file_util.open_file(in_file_path, encoding, 'r')
-
-        txt_list = []
 
         self.vocab = {"<pad>" : 0,
                       "<unk>" : 1,
@@ -30,26 +29,46 @@ class WordTokenizer :
                 if word not in self.vocab.keys():
                     self.vocab[word] = i
                     i += 1
+        self.id_to_token = {self.vocab[key]:key for key in self.vocab.keys()}
+            
 
         
         file_util.write_dict(self.vocab, out_file_path, encoding, delim)
+
+    def load_vocab(self, vocab_file_path, encoding, delim):
+        file_util.load_dict(self.vocab, True, vocab_file_path, encoding=encoding, delim=delim, txt_option=TXT_OPTION.UPPER)
+        self.id_to_token = {self.vocab[key]:key for key in self.vocab.keys()}
     
-    
-    def tokenize(self, txt:str, out_file_path, max_length = 30):
+    def tokenize(self, txt:str, max_length = 30):
         txt_ = "<SOS> " + txt + " <EOS>"
         tokens = txt_.split(" ")
-        vocab = {}
-
-        file_util.load_dict(vocab, True, out_file_path, txt_option=TXT_OPTION.UPPER)
+        
         result = []
     
         for i in range(max_length):
             if  i < len(tokens):
-                if tokens[i] not in vocab.keys():
-                    result.append(vocab["<UNK>"])
+                if tokens[i] not in self.vocab.keys():
+                    result.append(self.vocab["<UNK>"])
                 else:
-                    result.append(vocab[tokens[i]])
+                    result.append(self.vocab[tokens[i]])
             else:
-                result.append(vocab["<PAD>"])
+                result.append(self.vocab["<PAD>"])
     
         return result
+    
+    def decode(self, ids:list, decode_special_tokens=False):
+        
+        result = ""
+        if not decode_special_tokens:
+            for id in ids:
+                if id not in [0, 1, 2, 3]:
+                    _id = self.id_to_token[id] + " "
+                    result += _id
+        else:
+            for id in ids:
+                _id = self.id_to_token[id]+ " "
+                result += _id
+        
+        return result
+            
+        
