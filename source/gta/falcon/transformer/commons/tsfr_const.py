@@ -15,6 +15,8 @@ NULL_INT = -99999
 
 ANNOTATION_MARK = '#'
 
+MODEL_VERSION = 'v0.0'
+
 class TORCH :
     SEED = 777
     GPU_NUM = 0

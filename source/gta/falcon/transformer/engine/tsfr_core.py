@@ -12,15 +12,15 @@ class TSFRCore :
         self.init(training_flag)
     
     def init(self, training_flag: bool) :
-        tsfr_util.print_torch('TSFRCore.init()')
-        
         # 사전, 모델, 로그 파일 등의 경로 설정
         self.set_properties(training_flag)
+        
+        tsfr_util.print_torch('TSFRCore.init()')
+        self.tsfr_properties._print()
     
     def set_properties(self, logging_flag: bool) :
-        self.ma_properties = TSFRProperties()
-        self.ma_properties.set(self.res_dir, self.encoding, logging_flag)
-        self.ma_properties._print()
+        self.tsfr_properties = TSFRProperties()
+        self.tsfr_properties.set(self.res_dir, self.encoding, logging_flag)
     
     def set_params(self, conf_dict: dict, training_flag: bool) :
         if conf_dict is not None :
