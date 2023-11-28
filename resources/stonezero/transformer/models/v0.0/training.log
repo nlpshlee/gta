@@ -1,0 +1,37 @@
+
+res_dir : C:/dev/git/repos/gta/resources/stonezero/transformer/
+model_dir : C:/dev/git/repos/gta/resources/stonezero/transformer/models
+model_path : C:/dev/git/repos/gta/resources/stonezero/transformer/models\v0.0
+
+
+TSFRCore.init() --> tsfr_util.print_torch() torch version : 2.1.1+cpu
+TSFRCore.init() --> tsfr_util.print_torch() gpuNum : 0 is not avaliable, set torch.device : cpu
+
+res_dir : C:/dev/git/repos/gta\resources/stonezero/transformer/
+model_dir : C:/dev/git/repos/gta\resources/stonezero/transformer/models
+model_path : C:/dev/git/repos/gta\resources/stonezero/transformer/models\v0.0
+
+
+TSFRCore.init() --> tsfr_util.print_torch() torch version : 2.1.1+cpu
+TSFRCore.init() --> tsfr_util.print_torch() gpuNum : 2 is not avaliable, set torch.device : cpu
+
+res_dir : C:/dev/git/repos/gta\resources/stonezero/transformer/
+model_dir : C:/dev/git/repos/gta\resources/stonezero/transformer/models
+model_path : C:/dev/git/repos/gta\resources/stonezero/transformer/models\v0.0
+
+
+TSFRCore.init() --> tsfr_util.print_torch() torch version : 2.1.1+cpu
+TSFRCore.init() --> tsfr_util.print_torch() gpuNum : 0 is not avaliable, set torch.device : cpu
+
+res_dir : C:/dev/git/repos/gta\resources/stonezero/transformer/
+model_dir : C:/dev/git/repos/gta\resources/stonezero/transformer/models
+model_path : C:/dev/git/repos/gta\resources/stonezero/transformer/models\v0.0
+
+
+TSFRCore.init() --> tsfr_util.print_torch() torch version : 2.1.1+cpu
+TSFRCore.init() --> tsfr_util.print_torch() gpuNum : 2 is not avaliable, set torch.device : cpu
+
+res_dir : C:/dev/git/repos/gta\resources/stonezero/transformer/
+model_dir : C:/dev/git/repos/gta\resources/stonezero/transformer/models
+model_path : C:/dev/git/repos/gta\resources/stonezero/transformer/models\v0.0
+

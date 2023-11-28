@@ -2,7 +2,7 @@ from _init import *
 
 from gta.modules import common_util, file_util
 
-from gta.falcon.transformer.commons import tsfr_const, tsfr_util
+from gta.stonezero.transformer.commons import tsfr_const, tsfr_util
 
 
 class TSFRProperties :
@@ -32,11 +32,11 @@ class TSFRProperties :
         tsfr_util.logging(f'model_path : {self.model_path}\n')
 
 
-''' if __name__ == "__main__" :
-    res_dir = "C:/nlpshlee/dev_env/git/repos/gta/resources/falcon/transformer/"
+'''if __name__ == "__main__" :
+    res_dir = "C:/dev/git/repos/gta/resources/stonezero/transformer/"
     encoding = "utf8"
 
     tsfr_properties = TSFRProperties()
     tsfr_properties.set(res_dir, encoding, True)
     
-    tsfr_properties._print() '''
+    tsfr_properties._print()'''

@@ -1,7 +1,7 @@
 {
 	"params" : {
 		"torch": {
-			"gpuNum": "1"
+			"gpuNum": "2"
 		}
 	}
 }
